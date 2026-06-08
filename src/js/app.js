@@ -1,11 +1,27 @@
-// TODO: write code here
+import "../css/style.css";
+import goblinSrc from "../img/goblin.png";
 
-// comment this to pass build
-const unusedVariable = "variable";
+document.addEventListener('DOMContentLoaded', () => {
+    const holes = document.querySelectorAll('.hole');
+    const boardSize = holes.length;
 
-// for demonstration purpose only
-export default function demo(value) {
-  return `Demo: ${value}`;
-}
+    const goblin = document.createElement('img');
+    goblin.src = goblinSrc;
+    goblin.classList.add('goblin-img');
 
-console.log("app.js included");
+    let currentHoleIndex = -1;
+
+    function moveGoblin() {
+        let newIndex;
+
+        do {
+            newIndex = Math.floor(Math.random() * boardSize);
+        } while (newIndex === currentHoleIndex);
+
+        holes[newIndex].appendChild(goblin);
+        currentHoleIndex = newIndex;
+    }
+
+    moveGoblin();
+    setInterval(moveGoblin, 1000);
+});

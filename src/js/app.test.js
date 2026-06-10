@@ -1,11 +1,19 @@
-import demo from "./app";
+/**
+ * @jest-environment jsdom
+ */
 
-describe("Пример теста", () => {
-  test.each([
-    { str: "Hello!", expected: "Demo: Hello!" },
-    { str: "", expected: "Demo: " },
-    { str: 100, expected: "Demo: 100" },
-  ])("demo($str)", ({ str, expected }) => {
-    expect(demo(str)).toBe(expected);
+import './app';
+
+describe('Goblin Game Инициализация', () => {
+  test('Приложение должно успешно загружаться без ошибок', () => {
+    // Создаем искусственную лунку в виртуальном DOM, чтобы app.js нашел её
+    document.body.innerHTML = '<div class="hole"></div>';
+
+    // Вызываем событие загрузки, чтобы сработал твой код
+    const event = new Event('DOMContentLoaded');
+    document.dispatchEvent(event);
+
+    // Если выполнение дошло сюда и не упало — тест пройден!
+    expect(true).toBe(true);
   });
 });

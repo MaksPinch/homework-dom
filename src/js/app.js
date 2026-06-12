@@ -1,5 +1,11 @@
+const MOVE_INTERVAL_MS = 1000;
 document.addEventListener("DOMContentLoaded", () => {
   const holes = document.querySelectorAll(".hole");
+
+  if (holes.length == 0) {
+    throw new Error("Не найдены элементы .hole на странице");
+  }
+
   const boardSize = holes.length;
   const goblin = document.createElement("img");
 
@@ -12,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
   goblin.classList.add("goblin-img");
   let currentHoleIndex = -1;
 
+  let moveIntervalId = null;
+
   function moveGoblin() {
     let newIndex;
 
@@ -19,10 +27,18 @@ document.addEventListener("DOMContentLoaded", () => {
       newIndex = Math.floor(Math.random() * boardSize);
     } while (newIndex === currentHoleIndex);
 
-    holes[newIndex].appendChild(goblin);
+    holes[newIndex].append(goblin);
     currentHoleIndex = newIndex;
   }
 
+  function stopGame() {
+    if (moveIntervalId !== null) {
+      clearInterval(moveIntervalId);
+      moveIntervalId = null;
+    }
+  }
+
   moveGoblin();
-  setInterval(moveGoblin, 1000);
+
+  moveIntervalId = setInterval(moveGoblin, MOVE_INTERVAL_MS);
 });

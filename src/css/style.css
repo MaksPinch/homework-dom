@@ -1,10 +1,14 @@
 .grid-4x4 {
-    display: grid;
-    grid-template-columns: repeat(4, 120px);
-    grid-template-rows: repeat(4, 120px);
-    gap: 15px;
-    margin: 0 auto;
-    width: max-content;
+  display: grid;
+  grid-template-columns: repeat(4, 120px);
+  grid-template-rows: repeat(4, 120px);
+  gap: 10px;
+  width: max-content;
+  margin: 20px auto;
+}
+
+.board {
+    cursor: url(../img/pngtree-hammer-vector-in-flat-style-png-image_5604482.jpg), auto;
 }
 
 .hole {
@@ -26,3 +30,4 @@
     height: 85%;
     object-fit: contain;
 }
+

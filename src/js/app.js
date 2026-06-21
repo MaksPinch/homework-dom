@@ -1,12 +1,16 @@
 class Gameboard {
   constructor() {
-    this.holes = document.querySelectorAll(".hole");
-
+    this.boardEl = document.querySelector(".board");
     this.winsEl = document.getElementById("score-wins");
-
     this.lossesEl = document.getElementById("score-losses");
 
-    this.boardEl = document.querySelector(".board");
+    for (let i = 0; i < 16; i++) {
+      const hole = document.createElement("div");
+      hole.classList.add("hole");
+      this.boardEl.append(hole);
+    }
+
+    this.holes = document.querySelectorAll(".hole");
   }
 
   updateCounters(wins, losses) {
@@ -18,6 +22,7 @@ class Gameboard {
 class Goblin {
   constructor() {
     this.element = document.createElement("img");
+    this.element.alt = "Goblin";
 
     this.element.classList.add("goblin-img");
 
@@ -30,7 +35,7 @@ class Goblin {
 
   remove() {
     if (this.element.parentNode) {
-      this.element.parentNode.removeChild(this.element);
+      this.element.remove();
     }
   }
 }
@@ -108,7 +113,12 @@ class GameController {
   endGame() {
     this.stopInterval();
     this.goblin.remove();
-    alert(`Игра окончена! Ваши очки: ${this.wins}`);
+
+    this.board.boardEl.innerHTML = `
+    <div style="grid-column: span 4; text-align: center; font-size: 24px; color: red; font-weight: bold; margin-top: 50px;">
+      Игра окончена!<br>Ваш результат: ${this.wins} очков
+    </div>
+  `;
   }
 
   stopInterval() {

@@ -1,0 +1,19 @@
+.credit-validator__card {
+  width: 50px;
+  opacity: 0.4;
+  margin-right: 5px;
+}
+
+.credit-validator__card--active {
+  opacity: 1;
+}
+
+.credit-validator__input {
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.credit-validator__button {
+  padding: 5px 10px;
+  cursor: pointer;
+}

@@ -1,8 +1,8 @@
-import CardValidator from './CardValidator.js';
+import CardValidator from "./CardValidator.js";
 
-import visaImg from '../../img/visa.png';
-import mastercardImg from '../../img/mc.png';
-import mirImg from '../../img/mir.png';
+import visaImg from "../../img/visa.png";
+import mastercardImg from "../../img/mc.png";
+import mirImg from "../../img/mir.png";
 
 export default class WidgetDOM {
   constructor() {
@@ -38,13 +38,19 @@ export default class WidgetDOM {
       const value = this.input.value;
       const cardType = this.validator.getCardType(value);
 
-      const allCards = this.container.querySelectorAll('.credit-validator__card');
-      allCards.forEach(card => card.classList.remove('credit-validator__card--active'));
+      const allCards = this.container.querySelectorAll(
+        ".credit-validator__card",
+      );
+      allCards.forEach((card) =>
+        card.classList.remove("credit-validator__card--active"),
+      );
 
-      if (cardType !== 'unknown') {
-        const activeCard = this.container.querySelector(`.credit-validator__card--${cardType}`);
+      if (cardType !== "unknown") {
+        const activeCard = this.container.querySelector(
+          `.credit-validator__card--${cardType}`,
+        );
         if (activeCard) {
-          activeCard.classList.add('credit-validator__card--active');
+          activeCard.classList.add("credit-validator__card--active");
         }
       }
     });

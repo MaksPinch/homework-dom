@@ -1,5 +1,5 @@
 export default class CardValidator {
-validate(cardNumber) {
+  validate(cardNumber) {
     const cleanNumber = cardNumber.trim();
 
     if (!cleanNumber) return false;
@@ -24,25 +24,27 @@ validate(cardNumber) {
       shouldDouble = !shouldDouble;
     }
     return sum % 10 === 0;
-
-    }
-getCardType(cardNumber) {
+  }
+  getCardType(cardNumber) {
     const cleanNumber = cardNumber.trim();
 
-    if (cleanNumber.startsWith('4')) {
-      return 'visa';
+    if (cleanNumber.startsWith("4")) {
+      return "visa";
     }
 
     const firstTwoDigits = parseInt(cleanNumber.substring(0, 2), 10);
     const firstFourDigits = parseInt(cleanNumber.substring(0, 4), 10);
 
-    if ((firstTwoDigits >= 51 && firstTwoDigits <= 55) || (firstFourDigits >= 2221 && firstFourDigits <= 2720)) {
-      return 'mastercard';
+    if (
+      (firstTwoDigits >= 51 && firstTwoDigits <= 55) ||
+      (firstFourDigits >= 2221 && firstFourDigits <= 2720)
+    ) {
+      return "mastercard";
     }
 
     if (firstFourDigits >= 2200 && firstFourDigits <= 2204) {
-      return 'mir';
+      return "mir";
     }
-    return 'unknown';
+    return "unknown";
   }
 }

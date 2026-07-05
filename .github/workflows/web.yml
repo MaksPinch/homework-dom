@@ -41,6 +41,10 @@ jobs:
           node-version: 22.14.0
           cache: 'yarn'
       - run: yarn
+      - name: Start dev server
+        run: yarn start --no-open > server.log 2>&1 &
+      - name: Wait for dev server
+        run: npx wait-on http://localhost:8080 --timeout 60000
       - run: yarn test
 
   build:
